@@ -13,7 +13,6 @@ while 1:
         result_set = queue.get_messages()
         if result_set != []:
             message = result_set[0]
-            print str(time.time())
             message_body = message.get_body()
             m = json.loads(message_body)
             subject = m["Subject"]

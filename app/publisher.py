@@ -13,5 +13,4 @@ c = boto.sns.connect_to_region(region, aws_access_key_id = aws_access_key_id, aw
 while 1:
     for body in tailer.follow(open(file_path)):
         subject = str(time.time()) + " " + tag
-        print str(time.time())
         publication = c.publish(sns_topic_arn, body, subject)
