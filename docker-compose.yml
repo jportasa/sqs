@@ -7,7 +7,7 @@ services:
       context: .
       dockerfile: config/docker-publisher/Dockerfile
     image: python-publisher:latest
-    command: python /app/app/publisher.py
+    command: python app/publisher.py
     environment:
       - AWS_ACCESS_KEY_ID=j0XwJCYBjy85PIaD9eIEprj3Eq5qmHU8oYhj/rqq
       - AWS_SECRET_ACCESS_KEY=Gh8BnnarR_$m
@@ -19,7 +19,7 @@ services:
       context: .
       dockerfile: config/docker-consumer/Dockerfile
     image: python-consumer:latest
-    command: python /app/app/consumer.py
+    command: app/consumer.py
     environment:
       - AWS_ACCESS_KEY_ID=j0XwJCYBjy85PIaD9eIEprj3Eq5qmHU8oYhj/rqq
       - AWS_SECRET_ACCESS_KEY=Gh8BnnarR_$m
