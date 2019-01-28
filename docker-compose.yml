@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+
+  publisher:
+    build:
+      context: .
+      dockerfile: config/docker-publisher/Dockerfile
+    image: python-publisher:latest
+    command: python app/publisher/publisher.py
+    environment:
+      - AWS_ACCESS_KEY_ID=j0XwJCYBjy85PIaD9eIEprj3Eq5qmHU8oYhj/rqq
+      - AWS_SECRET_ACCESS_KEY=Gh8BnnarR_$m
+      - SNS_TOPIC_ARN=arn:aws:sns:us-east-1:953835556803:test
+      - REGION=eu-east-1
+
+  consumer:
+    build:
+      context: .
+      dockerfile: config/docker-consumer/Dockerfile
+    image: python-consumer:latest
+    command: python app/publisher/consumer.py
+    environment:
+      - AWS_ACCESS_KEY_ID=j0XwJCYBjy85PIaD9eIEprj3Eq5qmHU8oYhj/rqq
+      - AWS_SECRET_ACCESS_KEY=Gh8BnnarR_$m
+      - SQS_QUEUE_NAME=test.fifo
+      - REGION=eu-east-1
+
+  nginx:
+    image: rohan/nginx-alpine:latest
+    ports:
+      - "80:80"
+    restart: always
