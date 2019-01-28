@@ -7,7 +7,7 @@ services:
       context: .
       dockerfile: config/docker-publisher/Dockerfile
     image: python-publisher:latest
-    command: python sqs/app/publisher.py
+    command: bash
     environment:
       - AWS_ACCESS_KEY_ID=j0XwJCYBjy85PIaD9eIEprj3Eq5qmHU8oYhj/rqq
       - AWS_SECRET_ACCESS_KEY=Gh8BnnarR_$m
